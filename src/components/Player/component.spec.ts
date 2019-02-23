@@ -66,4 +66,16 @@ describe('PlayerComponent', () => {
       expect(driver.get.deviceImage()).toEqual(smartphoneImage);
     });
   });
+
+  describe('track information', () => {
+    it('should display the artUrl inside the track circle image', () => {
+      const artUrl = Chance().url();
+
+      driver
+        .given.artUrl(artUrl)
+        .when.renderingPlayer();
+
+      expect(driver.get.trackCircleImage().uri).toEqual(artUrl);
+    });
+  })
 });

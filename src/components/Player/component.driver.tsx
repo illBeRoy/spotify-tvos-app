@@ -51,6 +51,9 @@ export class PlayerComponentDriver {
     },
     deviceNameText: (): string => {
       return this.component.getByTestId('player-device-name').props.children;
+    },
+    trackCircleImage: (): ImageURISource => {
+      return this.component.getByTestId('player-track-circle-image').props.source;
     }
   };
 }

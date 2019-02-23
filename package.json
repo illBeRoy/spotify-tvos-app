@@ -1,0 +1,46 @@
+{
+  "name": "Spotify",
+  "version": "0.0.1",
+  "private": true,
+  "scripts": {
+    "start": "node node_modules/react-native/local-cli/cli.js start",
+    "start-tvos": "react-native run-ios --simulator 'Apple TV'  --scheme 'Spotify-tvOS'",
+    "test": "jest"
+  },
+  "dependencies": {
+    "react": "16.6.3",
+    "react-native": "0.58.5",
+    "axios": "^0.18.0"
+  },
+  "devDependencies": {
+    "@types/jest": "^24.0.6",
+    "@types/react": "^16.8.4",
+    "@types/react-native": "^0.57.38",
+    "@types/react-test-renderer": "^16.8.1",
+    "@types/chance": "^1.0.1",
+    "babel-core": "^7.0.0-bridge.0",
+    "babel-jest": "24.1.0",
+    "jest": "24.1.0",
+    "metro-react-native-babel-preset": "0.52.0",
+    "react-native-testing-library": "^1.5.0",
+    "react-test-renderer": "16.6.3",
+    "ts-jest": "^24.0.0",
+    "typescript": "^3.3.3333",
+    "chance": "^1.0.18",
+    "tslint": "^5.12.1",
+    "tslint-eslint-rules": "^5.4.0"
+  },
+  "jest": {
+    "preset": "react-native",
+    "transform": {
+      "^.+\\.js$": "<rootDir>/node_modules/react-native/jest/preprocessor.js",
+      "\\.(ts|tsx)$": "ts-jest"
+    },
+    "moduleFileExtensions": [
+      "ts",
+      "tsx",
+      "js"
+    ],
+    "testRegex": "(/__tests__/.*|\\.(test|spec))\\.(ts|tsx|js)$"
+  }
+}
