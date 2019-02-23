@@ -5,7 +5,8 @@
   "scripts": {
     "start": "node node_modules/react-native/local-cli/cli.js start",
     "start-tvos": "react-native run-ios --simulator 'Apple TV'  --scheme 'Spotify-tvOS'",
-    "test": "jest"
+    "test": "jest",
+    "test:watch": "jest --watch"
   },
   "dependencies": {
     "react": "16.6.3",

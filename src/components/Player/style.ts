@@ -21,9 +21,70 @@ export default StyleSheet.create({
     alignItems: 'center'
   },
   deviceNameText: {
-    color: 'white',
+    color: '#F1F1F1',
     fontSize: 36,
     fontFamily: 'HelveticaNeue-Thin',
     marginLeft: 20
+  },
+  mainAreaContainer: {
+    position: 'absolute',
+    flexDirection: 'column',
+    alignItems: 'center',
+    top: 75,
+    width: '100%'
+  },
+  albumArtCircle: {
+    width: 418,
+    height: 418,
+    borderRadius: 418 / 2
+  },
+  trackNameText: {
+    fontFamily: 'HelveticaNeue-Light',
+    fontSize: 48,
+    color: 'white',
+    marginTop: 30
+  },
+  trackInfoText: {
+    fontFamily: 'HelveticaNeue-Thin',
+    fontSize: 36,
+    color: '#F1F1F1',
+    marginTop: 12
+  },
+  buttonsStrip: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    height: 190,
+    marginTop: 48
+  },
+  playButton: {
+    width: 190,
+    height: 190,
+    marginRight: 50
+  },
+  rwButton: {
+    width: 128,
+    height: 128,
+    marginRight: 50
+  },
+  ffButton: {
+    width: 128,
+    height: 128
+  },
+  nextSongBar: {
+    position: 'absolute',
+    flexDirection: 'row',
+    width: '100%',
+    bottom: 75,
+    justifyContent: 'center'
+  },
+  nextSongIndication: {
+    fontFamily: 'HelveticaNeue-Thin',
+    fontSize: 36,
+    color: '#40F548'
+  },
+  nextSongName: {
+    fontFamily: 'HelveticaNeue-Thin',
+    fontSize: 36,
+    color: 'white'
   }
 });

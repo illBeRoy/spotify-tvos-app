@@ -77,5 +77,92 @@ describe('PlayerComponent', () => {
 
       expect(driver.get.trackCircleImage().uri).toEqual(artUrl);
     });
-  })
+
+    it('should display the track name in the track name label', () => {
+      const trackName = Chance().string();
+
+      driver
+        .given.trackName(trackName)
+        .when.renderingPlayer();
+
+      expect(driver.get.trackNameLabelText()).toEqual(trackName);
+    });
+
+    it('should display the artist and album name in the track info label', () => {
+      const artistName = Chance().string();
+      const albumName = Chance().string();
+
+      driver
+        .given.artistName(artistName)
+        .given.albumName(albumName)
+        .when.renderingPlayer();
+
+      expect(driver.get.trackInfoLabelText()).toEqual(`${artistName} - ${albumName}`);
+    });
+  });
+
+  describe('player controls', () => {
+    it('should invoke the onPressPlay handler when the "play" button is pressed', () => {
+      const onPressPlay = jest.fn();
+
+      driver
+        .given.onPressPlay(onPressPlay)
+        .when.renderingPlayer()
+        .when.pressingPlayButton();
+
+      expect(onPressPlay).toHaveBeenCalled();
+    });
+
+    it('should invoke the onPressRewind handler when the "rewind" button is pressed', () => {
+      const onPressRewind = jest.fn();
+
+      driver
+        .given.onPressRewind(onPressRewind)
+        .when.renderingPlayer()
+        .when.pressingRewindButton();
+
+      expect(onPressRewind).toHaveBeenCalled();
+    });
+
+    it('should invoke the onPressForward handler when the "forward" button is pressed', () => {
+      const onPressForward = jest.fn();
+
+      driver
+        .given.onPressForward(onPressForward)
+        .when.renderingPlayer()
+        .when.pressingForwardButton();
+
+      expect(onPressForward).toHaveBeenCalled();
+    });
+  });
+
+  describe('up next bar', () => {
+    it('should display the next track\'s name', () => {
+      const nextTrackName = Chance().string();
+
+      driver
+        .given.nextTrackName(nextTrackName)
+        .when.renderingPlayer();
+
+      expect(driver.get.nextTrackLabelText()).toEqual(nextTrackName);
+    });
+
+    it('should display the "up next" indication', () => {
+      const nextTrackName = Chance().string();
+
+      driver
+        .given.nextTrackName(nextTrackName)
+        .when.renderingPlayer();
+
+      expect(driver.get.nextTrackIndicationIsVisible()).toBe(true);
+    });
+
+    it('should not be visible at all if no next song', () => {
+      driver
+        .given.nextTrackName(null)
+        .when.renderingPlayer();
+
+      expect(driver.get.nextTrackBarIsVisible()).toBe(false);
+    });
+  });
 });
