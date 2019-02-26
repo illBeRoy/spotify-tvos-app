@@ -1,61 +1,88 @@
-# :space_invader: React Native Template TypeScript · [![Build Status](https://travis-ci.org/emin93/react-native-template-typescript.svg?branch=master)](https://travis-ci.org/emin93/react-native-template-typescript)
+![logo](logo.png)
+# 📺 Spotify App for tvOS
+> A Spotify Connect App for personal use on Apple TV made with React Native
 
-Clean and minimalist React Native template for a quick start with TypeScript.
+## What's That?
+A Spotify application built with React Native which uses the Spotify Connect API. It allows you to view and control your Spotify session from your Apple TV:
 
-[![Header](https://cdn-images-1.medium.com/max/500/1*E9RnPOATuhjuNrlFkv5oSg.jpeg)](https://medium.com/@emin93/react-native-typescript-b965059109d3)
+![screenshot](screenshot.png)
+[📽 See it in action](https://streamable.com/mxsg6)
 
-## :star: Features
+It started as a personal project to test out React Native for tvOS. I really wanted a Spotify app for my Apple TV, and this is the result. I used Sketch to design it, and it is written in Typescript and tested with Jest and react-native-testing-library.
 
-- Seamlessly integrated into the React Native CLI! :sparkles:
-- Consistent with the default React Native template
-- Always latest dependencies :raised_hands:
+This project is free to use and modify, but bear in mind that Spotify is a commercial product and so this project is only meant for personal use.
 
-## :arrow_forward: Quick Start
+The application is entirely custom made **and is in no way affiliated with Spotify**.
 
+## Getting Started
+### Prerequesits
+* Knowledge of React Native
+* Mac + XCode
+* Create a Spotify app in the [Spotify Dashboard](https://developer.spotify.com/dashboard)
+
+### Initializing the project
+Clone this project to your machine by running:
 ```bash
-react-native init MyApp --template typescript && node MyApp/setup.js
+git clone git@github.com:illBeRoy/spotify-tvos-app.git
 ```
 
-## :question: FAQ
+Now install the required dependencies by running:
+```bash
+npm install
+```
 
-### Why this template when React Native 0.57+ supports TypeScript out of the box?
+### Passing Tests
+The next step is to make sure that everything works fine by passing the tests.
+Start with creating a spotify configuration file (it does not exists in this repo as it contains personal configuration):
 
-Actually, when React Native 0.57 was announced, I planned to stop maintenance on this template. But after further evaluation, there's still quite a lot of manual work to do (add type definitions for React & React Native, create a `.tsconfig` for type checking, etc.) to properly set up a React Native 0.57+ TypeScript project. And that's where this template comes in and does that work for you. :raised_hands:
+*src/api/spotify.config.ts*
+```typescript
+export default {
+  CLIENT_AUTH: 'FOO',
+  REFRESH_TOKEN: 'BAR'
+};
+```
 
-### What additional dependencies are included in this template?
+We'll learn more about the config file in a minute, for now it can contain random values.
 
-- [TypeScript](https://github.com/Microsoft/TypeScript)
-- [Type definitions for React & React Native](https://github.com/DefinitelyTyped/DefinitelyTyped)
-- [ts-jest](https://github.com/kulshekhar/ts-jest)
+Next, run the following command:
+```bash
+npm test
+```
 
-This template always uses the latest versions of the dependencies at the time when the `react-native init` command is being executed. This means you don't have to worry about old versions.
+If everything passes, we're good to go!
 
-Lots of :heart: and credits to the owners and maintainers of those packages.
+### Configuring The Project
+The `spotify.config.ts` file contains two values:
+* `CLIENT_AUTH`: your [Spotify app](https://developer.spotify.com/dashboard) client id and secret, formatted as: `<client_id>:<client_secret>` encoded in base64
+* `REFRESH_TOKEN`: a refresh token for your own personal spotify **account** (not app), which can be used to produce access tokens.
 
-### Why the setup script?
+The Spotify API client in the app uses the above to produce access tokens for your account, and that's how it can read and control your Spotify sessions. Read more about the authorization code flow [here](https://developer.spotify.com/documentation/general/guides/authorization-guide/#authorization-code-flow).
 
-It deletes obsolete files like the `.flowconfig` and the `setup.js` itself after the setup.
+If you're not sure how to get your `REFRESH_TOKEN`, refer to Spotify's own [web-api-auth-examples](https://github.com/spotify/web-api-auth-examples). Do not forget to include the `user-read-playback-state` and `user-modify-playback-state` scopes when you generate your `REFRESH_TOKEN`.
 
-### How to do type checking?
+### Running The Project
+Finally! Now that everything is ready, simply run the following command:
+```bash
+npm start
+```
 
-`npm run tsc`
+If everything works correctly, this will start your React Native bundler and app inside a tvOS simulator.
 
-### Does debugging work?
+### Deploying to Apple TV
+If everything works fine and you're satisfied, you can install a working copy of the app on your Apple TV.
 
-Yes it does.
+Start by opening XCode. Switch the build scheme to `spotify-tvOS-release`. The next thing to do is to connect your Mac to your Apple TV (via USB-C). You should be able to find your Apple TV device near the Build button in XCode.
 
-[![Demonstration of working breakpoints in Visual Studio Code](https://cdn-images-1.medium.com/max/1600/1*ZXfzgq1xKz1B3chYy9xE7w.png)](https://medium.com/@emin93/react-native-typescript-b965059109d3)
+Finally, press build and pray for the best. If everything works as expected, you'll see your new Spotify app on your Apple TV.
 
-## :globe_with_meridians: Links
+🎉 Congratulations!
 
-- ["Using React Native with TypeScript just became simple" on Medium](https://medium.com/@emin93/react-native-typescript-b965059109d3)
-- ["24 tips for React Native you probably want to know" on Albert Gao's blog](http://albertgao.xyz/2018/05/30/24-tips-for-react-native-you-probably-want-to-know/#9-For-Typescript)
-- ["3 Easy Steps to Set Up React Native with TypeScript, Jest and Enzyme" on Medium by Jan Hesters](https://medium.com/@jan.hesters/3-easy-steps-to-set-up-react-native-with-typescript-jest-and-enzyme-592ca042262f)
+## Disclaimer
+As previously mentioned, this is a personal project and is in no way affiliate with Spotify.
 
-## :computer: Contributing
+Cloning, building, running and creating personal refresh tokens are under your exclusive responsibility.
 
-Contributions are very welcome. Please check out the [contributing document](https://github.com/emin93/react-native-template-typescript/blob/master/CONTRIBUTING.md).
+Some of the icons used in the design are taken from [flaticon](https://flaticon.com).
 
-### Donations
-
-I created this project in my spare time because I enjoy coding. Of course you can support me by [buying me a coffee](https://www.paypal.me/emin93) if you wish. :coffee: :relieved:
+Feel free to page me for anything! Enjoy!
