@@ -8,7 +8,6 @@
     "lib": ["es6"],
     "moduleResolution": "node",
     "noEmit": true,
-    "experimentalDecorators": true,
     "target": "esnext"
   },
   "include": ["src", "test"],

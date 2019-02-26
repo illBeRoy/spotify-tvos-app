@@ -18,10 +18,10 @@ export interface PlayerProps {
   onPressForward(): void;
 }
 
-const deviceImages: { [dt in DeviceType]: ImageURISource } = {
+export const deviceImages: { [dt in DeviceType]: ImageURISource } = {
   Computer: require('../../assets/laptop.png'),
   Smartphone: require('../../assets/smartphone.png'),
-  Speaker: require('../../assets/speaker.png')
+  CastAudio: require('../../assets/speaker.png')
 };
 
 export class Player extends React.PureComponent<PlayerProps> {

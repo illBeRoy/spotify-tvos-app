@@ -4,7 +4,7 @@ export default StyleSheet.create({
   container: {
     width: '100%',
     height: '100%',
-    backgroundColor: 'black'
+    backgroundColor: '#121212'
   },
   backgroundImage: {
     width: '100%',
@@ -30,7 +30,9 @@ export default StyleSheet.create({
     position: 'absolute',
     flexDirection: 'column',
     alignItems: 'center',
-    top: 75,
+    justifyContent: 'center',
+    top: 0,
+    height: '100%',
     width: '100%'
   },
   albumArtCircle: {

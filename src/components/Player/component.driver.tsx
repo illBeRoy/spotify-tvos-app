@@ -6,7 +6,7 @@ import { DeviceType } from '../../api/spotify';
 import { Player } from './component';
 
 export class PlayerComponentDriver {
-  private deviceType: DeviceType = Chance().pickone<DeviceType>(['Computer', 'Smartphone', 'Speaker']);
+  private deviceType: DeviceType = Chance().pickone<DeviceType>(['Computer', 'Smartphone', 'CastAudio']);
   private deviceName = Chance().string();
   private artUrl = Chance().url();
   private trackName = Chance().string();

@@ -12,25 +12,87 @@ import * as React from 'react';
 import { View } from 'react-native';
 import { Player, PlayerProps } from './components/Player/component';
 import style from './App.style';
+import { SpotifyPlayerState, SpotifyAPI } from './api/spotify';
+import { EmptyState } from './components/EmptyState/component';
+import { Logo } from './components/Logo/component';
 
-const mockProps: PlayerProps = {
-  artUrl: 'https://i.scdn.co/image/03d97de27e99fd8099506ea172531cea0da59654',
-  playingDeviceType: 'Speaker',
-  playingDeviceName: 'Living Room Speaker',
-  trackName: 'Chandelier',
-  artistName: 'Sia',
-  albumName: '1000 forms of fear',
-  nextTrackName: 'Dancing in the Moonlight',
-  onPressPlay: () => alert('pressed play man'),
-  onPressForward: () => alert('pressed ff man'),
-  onPressRewind: () => alert('pressed rw man')
-};
+export interface AppState {
+  ready: boolean;
+  playerState: SpotifyPlayerState;
+}
 
-export default class App extends React.Component {
+export default class App extends React.Component<{}, AppState> {
+  readonly state: AppState = { playerState: null, ready: false };
+  private spotifyApi = new SpotifyAPI();
+  private syncPollingInterval;
+
+  async componentDidMount() {
+    this.sync();
+    this.syncPollingInterval = setInterval(this.sync, 1000);
+  }
+
+  async componentWillUnmount() {
+    clearInterval(this.syncPollingInterval);
+  }
+
+  sync = async () => {
+    this.setState({
+      playerState: await this.spotifyApi.getPlayerStateIfExists(),
+      ready: true
+    });
+  }
+
+  onPressPlay = () => {
+    const { playerState } = this.state;
+    if (playerState.isPlaying) {
+      this.spotifyApi.pause();
+    } else {
+      this.spotifyApi.play();
+    }
+  }
+
+  onPressForward = () => {
+    this.spotifyApi.next();
+  }
+
+  onPressPrevious = () => {
+    this.spotifyApi.previous();
+  }
+
+  renderLogo() {
+    return <Logo/>;
+  }
+
+  renderEmptyState() {
+    return <EmptyState/>;
+  }
+
+  renderPlayer() {
+    const { playerState } = this.state;
+    const playerProps: PlayerProps = {
+      artUrl: playerState.currentlyPlayingTrack.coverImageUrl,
+      playingDeviceType: playerState.playingDevice.type,
+      playingDeviceName: playerState.playingDevice.name,
+      trackName: playerState.currentlyPlayingTrack.track,
+      artistName: playerState.currentlyPlayingTrack.artist,
+      albumName: playerState.currentlyPlayingTrack.album,
+      onPressPlay: this.onPressPlay,
+      onPressForward: this.onPressForward,
+      onPressRewind: this.onPressPrevious
+    };
+
+    return <Player {...playerProps} />;
+  }
+
   render() {
+    const { ready, playerState } = this.state;
+
     return (
       <View style={style.container}>
-        <Player {...mockProps} />
+        { ready ?
+          (playerState ? this.renderPlayer() : this.renderEmptyState()) :
+          this.renderLogo()
+        }
       </View>
     );
   }

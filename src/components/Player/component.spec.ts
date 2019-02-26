@@ -55,8 +55,8 @@ describe('PlayerComponent', () => {
       expect(driver.get.deviceImage()).toEqual(smartphoneImage);
     });
 
-    it('should display the speaker icon if the device type is "Speaker"', () => {
-      const deviceType = 'Speaker';
+    it('should display the speaker icon if the device type is "CastAudio"', () => {
+      const deviceType = 'CastAudio';
       const smartphoneImage = require('../../assets/speaker.png');
 
       driver

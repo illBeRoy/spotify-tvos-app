@@ -3,7 +3,7 @@ import { APIGetPlayerResponse, APIAlbumImage, APIArtist } from '../../src/api/ex
 import { DeviceType } from '../../src/api/spotify';
 
 export class APIGetPlayerResponseBuilder {
-  private deviceType: DeviceType = Chance().pickone<DeviceType>(['Computer', 'Smartphone', 'Speaker']);
+  private deviceType: DeviceType = Chance().pickone<DeviceType>(['Computer', 'Smartphone', 'CastAudio']);
   private deviceName: string = Chance().string();
   private itemName: string = Chance().string();
   private albumName: string = Chance().string();
