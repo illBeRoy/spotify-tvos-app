@@ -2,10 +2,11 @@ import * as React from 'react';
 import { ImageURISource } from 'react-native';
 import { Chance } from 'chance';
 import { render, RenderAPI, fireEvent } from 'react-native-testing-library';
-import { Player, DeviceType } from './component';
+import { DeviceType } from '../../api/spotify';
+import { Player } from './component';
 
 export class PlayerComponentDriver {
-  private deviceType: DeviceType = Chance().pickone<DeviceType>(['Computer', 'Mobile', 'Speaker']);
+  private deviceType: DeviceType = Chance().pickone<DeviceType>(['Computer', 'Smartphone', 'Speaker']);
   private deviceName = Chance().string();
   private artUrl = Chance().url();
   private trackName = Chance().string();

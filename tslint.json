@@ -22,6 +22,7 @@
     "interface-name": false,
     "no-string-literal": false,
     "object-literal-key-quotes": false,
-    "member-ordering": false
+    "member-ordering": false,
+    "only-arrow-functions": false
   }
 }

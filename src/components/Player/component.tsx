@@ -1,10 +1,9 @@
 import * as React from 'react';
 import { View, Image, ImageURISource, Text, TouchableOpacity as TO } from 'react-native';
+import { DeviceType } from '../../api/spotify';
 import style from './style';
 
 const TouchableOpacity: any = TO;
-
-export type DeviceType = 'Computer' | 'Mobile' | 'Speaker';
 
 export interface PlayerProps {
   playingDeviceType: DeviceType;
@@ -21,7 +20,7 @@ export interface PlayerProps {
 
 const deviceImages: { [dt in DeviceType]: ImageURISource } = {
   Computer: require('../../assets/laptop.png'),
-  Mobile: require('../../assets/smartphone.png'),
+  Smartphone: require('../../assets/smartphone.png'),
   Speaker: require('../../assets/speaker.png')
 };
 

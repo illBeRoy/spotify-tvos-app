@@ -44,8 +44,8 @@ describe('PlayerComponent', () => {
       expect(driver.get.deviceImage()).toEqual(laptopImage);
     });
 
-    it('should display the smartphone icon if the device type is "Mobile"', () => {
-      const deviceType = 'Mobile';
+    it('should display the smartphone icon if the device type is "Smartphone"', () => {
+      const deviceType = 'Smartphone';
       const smartphoneImage = require('../../assets/smartphone.png');
 
       driver

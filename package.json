@@ -14,22 +14,24 @@
     "axios": "^0.18.0"
   },
   "devDependencies": {
+    "@types/chance": "^1.0.1",
     "@types/jest": "^24.0.6",
+    "@types/nock": "^9.3.1",
     "@types/react": "^16.8.4",
     "@types/react-native": "^0.57.38",
     "@types/react-test-renderer": "^16.8.1",
-    "@types/chance": "^1.0.1",
     "babel-core": "^7.0.0-bridge.0",
     "babel-jest": "24.1.0",
+    "chance": "^1.0.18",
     "jest": "24.1.0",
     "metro-react-native-babel-preset": "0.52.0",
+    "nock": "^10.0.6",
     "react-native-testing-library": "^1.5.0",
     "react-test-renderer": "16.6.3",
     "ts-jest": "^24.0.0",
-    "typescript": "^3.3.3333",
-    "chance": "^1.0.18",
     "tslint": "^5.12.1",
-    "tslint-eslint-rules": "^5.4.0"
+    "tslint-eslint-rules": "^5.4.0",
+    "typescript": "^3.3.3333"
   },
   "jest": {
     "preset": "react-native",
